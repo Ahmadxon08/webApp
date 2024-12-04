@@ -1,0 +1,22 @@
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  span {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    transition: color 0.3s ease;
+  }
+
+  button {
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+
+    padding: 10px 30px;
+    background-color: rgb(52, 52, 199);
+  }
+}
