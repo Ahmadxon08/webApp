@@ -121,7 +121,7 @@ const Popular = () => {
   }, [cartItem]);
 
   useEffect(() => {
-    // mainButtonClick hodisasiga response berish
+    // Telegram Web App eventni tinglash
     telegram.onEvent("mainButtonClick", onSendData);
 
     // Component unmount bo'lsa eventni olib tashlash
@@ -129,7 +129,6 @@ const Popular = () => {
       telegram.offEvent("mainButtonClick", onSendData);
     };
   }, [onSendData]);
-
   // const getTitle = (product) => {
   //   if (selectedLanguage.value === "en") {
   //     return {
