@@ -122,11 +122,11 @@ const Popular = () => {
 
   useEffect(() => {
     // Telegram Web App eventni tinglash
-    telegram.onEvent("mainButtonClick", onSendData);
+    telegram.onEvent("mainButtonClicked", onSendData);
 
     // Component unmount bo'lsa eventni olib tashlash
     return () => {
-      telegram.offEvent("mainButtonClick", onSendData);
+      telegram.offEvent("mainButtonClicked", onSendData);
     };
   }, [onSendData]);
   // const getTitle = (product) => {
