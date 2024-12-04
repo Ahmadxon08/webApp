@@ -1,5 +1,5 @@
 import "./Popular.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // import ProductDetailModal from "../productModal/ProductDatailModal";
 // import { useProducts } from "../../context/useContext.jsx";
 import useLanguageStore from "../lang/languageStore.js";
@@ -116,6 +116,16 @@ const Popular = () => {
     telegram.MainButton.text = "Sotib olish";
     telegram.MainButton.show();
   };
+
+  const onSendData = useCallback(() => {
+    telegram.sendData(JSON.stringify(cartItem));
+  }, [cartItem]);
+  useEffect(() => {
+    telegram.onEvent("mainButtonClick", onSendData);
+    return () => {
+      telegram.offEvent("mainButtonClick", onSendData);
+    };
+  }, [onSendData]);
 
   // const getTitle = (product) => {
   //   if (selectedLanguage.value === "en") {
