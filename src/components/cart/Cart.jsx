@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Cart.scss";
 
-const Cart = ({ cartItem, handleChackOut }) => {
+const Cart = ({ cartItem, handleCheckOut }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Cart = ({ cartItem, handleChackOut }) => {
           currency: "USD",
         })}
       </span>
-      <button onClick={handleChackOut}>Buy Now</button>
+      <button onClick={handleCheckOut}>Buy Now</button>
     </div>
   );
 };
