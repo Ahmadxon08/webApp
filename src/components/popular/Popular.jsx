@@ -114,32 +114,27 @@ const Popular = () => {
   };
 
   const onSendData = useCallback(() => {
-    const queryId = telegram.initDataUnsafe?.query_id;
+    // const queryId = telegram.initDataUnsafe?.query_id;
 
-    if (queryId) {
-      fetch("http://localhost:800/web-data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data: queryId }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log("Data successfully sent to the server.");
-          } else {
-            console.error("Failed to send data to the server.");
-          }
-        })
-        .catch((error) => console.error("Fetch error:", error));
-    } else {
-      telegram.sendData(
-        JSON.stringify({
-          products: cartItem,
-          queryId: queryId,
-        })
-      );
-    }
+    // if (queryId) {
+    //   fetch("http://localhost:800/web-data", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ data: queryId }),
+    //   })
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         console.log("Data successfully sent to the server.");
+    //       } else {
+    //         console.error("Failed to send data to the server.");
+    //       }
+    //     })
+    //     .catch((error) => console.error("Fetch error:", error));
+    // } else {
+    // }
+    telegram.sendData(JSON.stringify(cartItem));
   }, [cartItem]);
 
   useEffect(() => {
