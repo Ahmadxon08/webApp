@@ -108,23 +108,29 @@ const Popular = () => {
   };
 
   const handleCheckOut = () => {
-    // MainButton matnini yangilash
     telegram.MainButton.text = "Sotib olish";
 
-    // MainButton'ni ko'rsatish
     telegram.MainButton.show();
   };
 
   const onSendData = useCallback(() => {
-    // Cart itemlarni JSON formatida Telegram'ga yuborish
+    const quearyId = telegram.initDataUnsafe?.quary_id;
+
+    if (quearyId) {
+      fetch("http://localhost:800/web-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: quearyId }),
+      });
+    }
     telegram.sendData(JSON.stringify(cartItem));
   }, [cartItem]);
 
   useEffect(() => {
-    // Telegram Web App eventni tinglash
     telegram.onEvent("mainButtonClicked", onSendData);
 
-    // Component unmount bo'lsa eventni olib tashlash
     return () => {
       telegram.offEvent("mainButtonClicked", onSendData);
     };
