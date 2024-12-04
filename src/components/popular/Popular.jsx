@@ -108,20 +108,23 @@ const Popular = () => {
   };
 
   const handleCheckOut = () => {
-    // TODO: Bu yerga checkout qilish uchun o'zgaruvchilarni o'zgartiring
-    // telegram.MainButton.url = "/checkout"; // Checkout qilish uchun url
-    // telegram.MainButton.text = "Sotib olish"; // Checkout qilish uchun butonning nomi
-    // telegram.MainButton.show(); // Checkout qilish uchun butonni chiqarish
-
+    // MainButton matnini yangilash
     telegram.MainButton.text = "Sotib olish";
+
+    // MainButton'ni ko'rsatish
     telegram.MainButton.show();
   };
 
   const onSendData = useCallback(() => {
+    // Cart itemlarni JSON formatida Telegram'ga yuborish
     telegram.sendData(JSON.stringify(cartItem));
   }, [cartItem]);
+
   useEffect(() => {
+    // mainButtonClick hodisasiga response berish
     telegram.onEvent("mainButtonClick", onSendData);
+
+    // Component unmount bo'lsa eventni olib tashlash
     return () => {
       telegram.offEvent("mainButtonClick", onSendData);
     };
