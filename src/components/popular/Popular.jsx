@@ -106,9 +106,15 @@ const Popular = () => {
       console.log("Delete cart item 1", newData);
     }
   };
+
   const handleCheckOut = () => {
+    // TODO: Bu yerga checkout qilish uchun o'zgaruvchilarni o'zgartiring
+    // telegram.MainButton.url = "/checkout"; // Checkout qilish uchun url
+    // telegram.MainButton.text = "Sotib olish"; // Checkout qilish uchun butonning nomi
+    // telegram.MainButton.show(); // Checkout qilish uchun butonni chiqarish
+
     telegram.MainButton.text = "Sotib olish";
-    telegram.MainButton.show;
+    telegram.MainButton.show();
   };
 
   // const getTitle = (product) => {
