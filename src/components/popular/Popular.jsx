@@ -124,8 +124,14 @@ const Popular = () => {
         },
         body: JSON.stringify({ data: quearyId }),
       });
+    } else {
+      telegram.sendData(
+        JSON.stringify({
+          products: cartItem,
+          quearyId: quearyId,
+        })
+      );
     }
-    telegram.sendData(JSON.stringify(cartItem));
   }, [cartItem]);
 
   useEffect(() => {
