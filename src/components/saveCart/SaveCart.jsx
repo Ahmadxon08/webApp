@@ -1,43 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-
 import { useDrawerStore } from "../../store/useStore";
 import { useProducts } from "../../context/useContext";
+import { MdDelete } from "react-icons/md";
+
 import "./SaveCart.scss";
+import { Button, IconButton } from "@mui/material";
+
 const SaveCart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItem, handleAddCart, handleRemoveCart } = useProducts();
-  const [count, setCount] = useState(0);
+  const { cartItem, handleAddCart, handleDelete, handleRemoveCart } =
+    useProducts();
   const [isAdded, setIsAdded] = useState(false);
 
-  console.log(isAdded);
-
-  const handleRemoveFromCart = () => {
-    setCount(0);
+  const handleRemoveFromCart = (product) => {
+    handleRemoveCart(product);
     setIsAdded(false);
+  };
+  const handleDeleteItem = (productId) => {
+    handleDelete(productId); // `handleRemoveCart` to'g'ri chaqirilganiga ishonch hosil qilish
+  };
+  const handleIncrement = (product) => {
+    handleAddCart(product);
+  };
+
+  // Decrement product quantity in cart
+  const handleDecrement = (product) => {
     handleRemoveCart(product);
   };
 
-  const hanldeIncrement = () => {
-    setCount((prev) => prev + 1);
-    handleAddCart(product);
-  };
-
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount((prev) => prev - 1);
-      handleRemoveCart(product);
-    } else if (count === 1) {
-      handleRemoveFromCart();
-    }
-  };
-
-  const handleAddToCart = () => {
-    setIsAdded(true);
-    setCount(1);
-    handleAddCart(product);
-  };
+  // Add product to cart
 
   useEffect(() => {
     const calculateTotalPrice = () => {
@@ -47,9 +40,9 @@ const SaveCart = () => {
       );
       setTotalPrice(price);
     };
-
     calculateTotalPrice();
   }, [cartItem]);
+
   const { isDrawerOpen, closeDrawer } = useDrawerStore();
 
   const drawerContent = (
@@ -68,15 +61,17 @@ const SaveCart = () => {
       onKeyDown={closeDrawer}
       inert={isDrawerOpen ? null : "true"}
     >
-      <h2>
-        Savatdagi tovarlar naxlari{" "}
-        <span>
-          {totalPrice.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-          })}
-        </span>
-      </h2>
+      <div className="head">
+        <h2>
+          Savatdagi tovarlar naxlari{" "}
+          <span>
+            {totalPrice.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </span>
+        </h2>
+      </div>
 
       {cartItem.map((item, i) => (
         <div className="cartItem" key={i}>
@@ -89,13 +84,20 @@ const SaveCart = () => {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <button onClick={hanldeIncrement}>+</button>
-          <h4>{item.quantity}</h4>
-          <button onClick={handleDecrement} disabled={count === 0}>
-            -
-          </button>
+          <div className="text">
+            <p>{item.title}</p>
+          </div>
+          <div className="btnAndAct">
+            <span>X{item.quantity}</span>
+            <button onClick={() => handleDeleteItem(item.id)}>
+              <MdDelete size={32} color="#7421b0" />
+            </button>{" "}
+          </div>
         </div>
       ))}
+      <div className="buy">
+        <Button variant="contained">Sotib olish</Button>
+      </div>
     </Box>
   );
 

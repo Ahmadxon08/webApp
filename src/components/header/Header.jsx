@@ -7,7 +7,7 @@ import { TfiAlignRight } from "react-icons/tfi";
 import { LiaCompressSolid } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
 import { useDrawerStore } from "../../store/useStore";
-import { IoMdCart } from "react-icons/io";
+import { TiShoppingCart } from "react-icons/ti";
 import { IconButton } from "@mui/material";
 import { useProducts } from "../../context/useContext";
 
@@ -35,7 +35,6 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 50px'dan yuqoriga aylanganda class qo'shiladi
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
@@ -85,7 +84,7 @@ const Header = () => {
                   {totalQuantity > 0 ? (
                     <span className="badge">{totalQuantity}</span>
                   ) : null}
-                  <IoMdCart size={32} color="#7421b0" />
+                  <TiShoppingCart size={32} color="#7421b0" />
                 </IconButton>
 
                 <Language />

@@ -142,9 +142,7 @@ const Popular = () => {
   //   }
   // };
   useEffect(() => {
-    // Faqat `cartItem` o'zgarganida ishlashi uchun cheklov qo'yish
     if (cartItem.length > 0) {
-      // State-ni yangilash
     }
   }, [cartItem]);
   return (

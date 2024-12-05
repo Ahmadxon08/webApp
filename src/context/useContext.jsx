@@ -5,7 +5,6 @@ import axios from "axios";
 // Context yaratish
 const ProductContext = createContext();
 
-// Provider yaratish
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,6 +30,11 @@ export const ProductProvider = ({ children }) => {
 
       setCartItem(newdata);
     }
+  };
+  const handleDelete = (productId) => {
+    setCartItem((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    ); // id orqali filtrlaymiz
   };
 
   const handleRemoveCart = (item) => {
@@ -145,6 +149,7 @@ export const ProductProvider = ({ children }) => {
         error,
         handleAddCart,
         handleRemoveCart,
+        handleDelete,
       }}
     >
       {children}
