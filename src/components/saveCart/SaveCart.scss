@@ -1,0 +1,13 @@
+.cartBody {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  gap: 10px;
+  .cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
