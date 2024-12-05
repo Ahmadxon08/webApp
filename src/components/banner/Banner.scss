@@ -310,14 +310,13 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 425px) {
   .banner {
     height: 100%;
-    // min-height: 100vh;
     background-image: url("./assets/images/banneBg.png");
     background-repeat: no-repeat;
     background-position: top right;
-    background-size: 90% 52%;
+    background-size: 85% 48%;
     width: 100%;
     padding: 0px 0;
 
@@ -329,7 +328,7 @@
       height: 100%;
       flex-direction: column-reverse;
       position: relative;
-      padding-top: 100px;
+      padding-top: 50px;
       gap: 30px;
       .bannerTexts {
         display: flex;

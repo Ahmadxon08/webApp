@@ -42,12 +42,6 @@ const Popular = () => {
     fetchProducts();
   }, []);
 
-  // console.log(selectedLanguage);
-
-  // const { products } = useProducts();
-
-  // console.log("saaalommm", products);
-
   const handleClick = (product) => {
     setSelectedProduct(product);
   };
