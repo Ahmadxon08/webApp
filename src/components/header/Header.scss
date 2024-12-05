@@ -99,6 +99,7 @@ header.scrolled {
             width: 100%;
             background: #000000d0;
             top: 78px;
+            backdrop-filter: blur(5px);
             left: 0;
             bottom: 0;
 
@@ -165,6 +166,84 @@ header.scrolled {
             border-radius: 4px;
             background-color: #fff;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  header {
+    background: #fff;
+    width: 100%;
+    nav {
+      .navbar {
+        .navlist {
+          display: none;
+
+          &.show {
+            display: flex;
+            position: absolute;
+            justify-content: flex-end;
+            align-items: end;
+
+            flex-direction: column;
+            width: 100%;
+            background: #000000d0;
+            top: 78px;
+            left: 0;
+            bottom: 0;
+
+            position: fixed;
+            z-index: 44;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            width: 40%;
+            height: 100%;
+            background-color: #fff;
+            padding: 0 0 0 0;
+            align-items: start;
+            li {
+              display: flex;
+              width: 100%;
+              padding-left: 30px;
+              transition: all 0.5s;
+              padding: 20px 20px;
+              border-bottom: 2px solid #ccc;
+              cursor: pointer;
+              &:hover {
+                background: #00000070;
+                a {
+                  color: #7421b0;
+                }
+              }
+              a {
+                font-family: Rubik;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 24px;
+              }
+              &:nth-child(1) a {
+                animation: slideIn 0.5s ease-in-out 0.1s both;
+              }
+              &:nth-child(2) a {
+                animation: slideIn 0.5s ease-in-out 0.2s both;
+              }
+              &:nth-child(3) a {
+                animation: slideIn 0.5s ease-in-out 0.3s both;
+              }
+              &:nth-child(4) a {
+                animation: slideIn 0.5s ease-in-out 0.4s both;
+              }
+            }
+          }
+        }
+        .navfunction {
+          width: 95%;
+          gap: 20px;
         }
       }
     }
