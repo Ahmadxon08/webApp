@@ -154,7 +154,7 @@ header.scrolled {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          width: 35%;
+          width: 98% !important;
           gap: 40px;
           .lang {
             z-index: 1000;
@@ -176,6 +176,7 @@ header.scrolled {
   header {
     background: #fff;
     width: 100%;
+
     nav {
       .navbar {
         .navlist {
@@ -242,8 +243,14 @@ header.scrolled {
           }
         }
         .navfunction {
-          width: 95%;
-          gap: 20px;
+          display: flex;
+          justify-content: center !important;
+          width: 65%;
+          gap: 10px;
+          .lang {
+            display: flex;
+            align-items: center;
+          }
         }
       }
     }

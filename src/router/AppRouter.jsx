@@ -11,7 +11,7 @@ const AppRouter = () => {
       <Banner />
       <Main />
       <BackTopButton />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

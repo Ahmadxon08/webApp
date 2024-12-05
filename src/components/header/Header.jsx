@@ -6,8 +6,13 @@ import Language from "../lang/Language";
 import { TfiAlignRight } from "react-icons/tfi";
 import { LiaCompressSolid } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
+import { useDrawerStore } from "../../store/useStore";
+import { IoMdCart } from "react-icons/io";
+import { IconButton } from "@mui/material";
 
 const Header = () => {
+  const openDrawer = useDrawerStore((state) => state.openDrawer);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -58,6 +63,14 @@ const Header = () => {
             </div>
             <div className="navfunction">
               <div className="lang">
+                <IconButton
+                  color="secondary"
+                  onClick={openDrawer}
+                  aria-label="add to shopping cart"
+                >
+                  <IoMdCart />
+                </IconButton>
+
                 <Language />
               </div>
               <button onClick={toggleMenu} className="burger">
