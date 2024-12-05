@@ -12,6 +12,77 @@ export const ProductProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [cartItem, setCartItem] = useState([]);
 
+  const handleAddCart = (item) => {
+    const existItem = cartItem.find((c) => c.id === item.id);
+
+    if (existItem) {
+      // Agar mahsulot allaqachon savatchada bo'lsa, uning miqdorini oshiring
+      const newData = cartItem.map((c) =>
+        c.id === item.id ? { ...existItem, quantity: c.quantity + 1 } : c
+      );
+      setCartItem(newData);
+
+      console.log("cart data", newData);
+    } else {
+      // Yangi mahsulotni savatchaga qo'shing
+      const newdata = [...cartItem, { ...item, quantity: 1 }];
+
+      console.log("new data", newdata);
+
+      setCartItem(newdata);
+    }
+  };
+
+  const handleRemoveCart = (item) => {
+    const exitItem = cartItem.find((c) => c.id === item.id);
+    if (exitItem.quantity === 1) {
+      const newData = cartItem.filter((c) => c.id !== exitItem.id);
+
+      console.log("Delete cart item 0", newData);
+
+      setCartItem(newData);
+    } else {
+      const newData = cartItem.map((c) =>
+        c.id === exitItem.id
+          ? { ...exitItem, quantity: exitItem.quantity - 1 }
+          : c
+      );
+      setCartItem(newData);
+      console.log("Delete cart item 1", newData);
+    }
+  };
+
+  const [count, setCount] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+
+  console.log(isAdded);
+
+  const handleRemoveFromCart = () => {
+    setCount(0);
+    setIsAdded(false);
+    han(product);
+  };
+
+  const hanldeIncrement = () => {
+    setCount((prev) => prev + 1);
+    handleAddCart(product);
+  };
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount((prev) => prev - 1);
+      handleRemoveCart(product);
+    } else if (count === 1) {
+      handleRemoveFromCart();
+    }
+  };
+
+  const handleAddToCart = () => {
+    setIsAdded(true);
+    setCount(1);
+    onAddToCart(product);
+  };
+
   // Mahsulotlarni API orqali olish
   const fetchProducts = async () => {
     setLoading(true);
@@ -72,6 +143,8 @@ export const ProductProvider = ({ children }) => {
         removeProduct,
         loading,
         error,
+        handleAddCart,
+        handleRemoveCart,
       }}
     >
       {children}

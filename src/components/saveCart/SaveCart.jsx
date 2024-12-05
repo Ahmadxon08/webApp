@@ -5,10 +5,39 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { useDrawerStore } from "../../store/useStore";
 import { useProducts } from "../../context/useContext";
 import "./SaveCart.scss";
-import Cart from "../cart/Cart";
 const SaveCart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItem } = useProducts();
+  const { cartItem, handleAddCart, handleRemoveCart } = useProducts();
+  const [count, setCount] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+
+  console.log(isAdded);
+
+  const handleRemoveFromCart = () => {
+    setCount(0);
+    setIsAdded(false);
+    handleRemoveCart(product);
+  };
+
+  const hanldeIncrement = () => {
+    setCount((prev) => prev + 1);
+    handleAddCart(product);
+  };
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount((prev) => prev - 1);
+      handleRemoveCart(product);
+    } else if (count === 1) {
+      handleRemoveFromCart();
+    }
+  };
+
+  const handleAddToCart = () => {
+    setIsAdded(true);
+    setCount(1);
+    handleAddCart(product);
+  };
 
   useEffect(() => {
     const calculateTotalPrice = () => {
@@ -60,7 +89,11 @@ const SaveCart = () => {
               style={{ objectFit: "cover" }}
             />
           </div>
+          <button onClick={hanldeIncrement}>+</button>
           <h4>{item.quantity}</h4>
+          <button onClick={handleDecrement} disabled={count === 0}>
+            -
+          </button>
         </div>
       ))}
     </Box>
