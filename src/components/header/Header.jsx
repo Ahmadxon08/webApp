@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useDrawerStore } from "../../store/useStore";
 import { IoMdCart } from "react-icons/io";
 import { IconButton } from "@mui/material";
+import { useProducts } from "../../context/useContext";
 
 const Header = () => {
   const openDrawer = useDrawerStore((state) => state.openDrawer);
@@ -17,6 +18,14 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const { t } = useTranslation();
+  const { cartItem } = useProducts();
+  const totalQuantity = cartItem.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+  console.log("totalQuantity", totalQuantity);
+
+  console.log("header items quantity", cartItem);
 
   console.log(t("greeting"));
 
@@ -64,11 +73,19 @@ const Header = () => {
             <div className="navfunction">
               <div className="lang">
                 <IconButton
+                  className="circleButton"
                   color="secondary"
-                  onClick={openDrawer}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openDrawer();
+                  }}
                   aria-label="add to shopping cart"
                 >
-                  <IoMdCart />
+                  {totalQuantity > 0 ? (
+                    <span className="badge">{totalQuantity}</span>
+                  ) : null}
+                  <IoMdCart size={32} color="#7421b0" />
                 </IconButton>
 
                 <Language />

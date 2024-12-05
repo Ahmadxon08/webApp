@@ -6,6 +6,9 @@ import useLanguageStore from "../lang/languageStore.js";
 import axios from "axios";
 import Cart from "../cart/Cart.jsx";
 import Card from "../card/Card.jsx";
+import useCartStore from "../../store/useCartStore.js";
+import useStore from "../../store/useCartStore.js";
+import { useProducts } from "../../context/useContext.jsx";
 
 const cube = "./assets/images/cube.png";
 const elps = "./assets/images/elips.png";
@@ -20,6 +23,7 @@ const Popular = () => {
   const { selectedLanguage } = useLanguageStore();
 
   const [products, setProducts] = useState([]);
+  const { cartItem, setCartItem } = useProducts();
 
   useEffect(() => {
     telegram.ready();
@@ -60,7 +64,7 @@ const Popular = () => {
       document.body.style.overflow = "auto";
     };
   }, [selectedProduct]);
-  const [cartItem, setCartItem] = useState([]);
+  // const [cartItem, setCartItem] = useState([]);
   const handleAddCart = (item) => {
     const existItem = cartItem.find((c) => c.id === item.id);
 
@@ -118,6 +122,7 @@ const Popular = () => {
       telegram.offEvent("mainButtonClicked", onSendData);
     };
   }, [onSendData]);
+
   // const getTitle = (product) => {
   //   if (selectedLanguage.value === "en") {
   //     return {
@@ -136,7 +141,12 @@ const Popular = () => {
   //     };
   //   }
   // };
-
+  useEffect(() => {
+    // Faqat `cartItem` o'zgarganida ishlashi uchun cheklov qo'yish
+    if (cartItem.length > 0) {
+      // State-ni yangilash
+    }
+  }, [cartItem]);
   return (
     <section>
       <div className="imgs">

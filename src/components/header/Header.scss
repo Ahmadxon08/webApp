@@ -52,6 +52,22 @@ header {
           cursor: pointer;
           width: 100%;
           justify-content: flex-end;
+
+          .circleButton {
+            display: flex;
+            position: relative;
+            span {
+              position: absolute;
+              top: 0;
+              right: 0;
+              color: #7421b0;
+              font-size: 18px;
+              font-weight: 700;
+
+              border-radius: 50%;
+              transform: translate(10px, -8px) scale(1);
+            }
+          }
         }
         .burger {
           display: none;

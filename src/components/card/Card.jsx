@@ -5,6 +5,8 @@ const Card = ({ product, onAddToCart, onRemoveFromCart }) => {
   const [count, setCount] = useState(0);
   const [isAdded, setIsAdded] = useState(false);
 
+  console.log(isAdded);
+
   const handleRemoveFromCart = () => {
     setCount(0);
     setIsAdded(false);
@@ -48,9 +50,11 @@ const Card = ({ product, onAddToCart, onRemoveFromCart }) => {
           })}{" "}
         </span>
 
-        <div className="btns">
+        <div className="btnBody">
           {count === 0 ? (
-            <button onClick={handleAddToCart}>Add to Cart</button>
+            <button className="btn1" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
           ) : (
             <div className="btns">
               <button onClick={hanldeIncrement}>+</button>

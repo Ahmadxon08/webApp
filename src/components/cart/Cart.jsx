@@ -16,6 +16,8 @@ const Cart = ({ cartItem, handleCheckOut }) => {
     calculateTotalPrice();
   }, [cartItem]);
 
+  console.log(cartItem);
+
   return (
     <div className="cart">
       <span>

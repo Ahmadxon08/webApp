@@ -10,6 +10,7 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cartItem, setCartItem] = useState([]);
 
   // Mahsulotlarni API orqali olish
   const fetchProducts = async () => {
@@ -63,7 +64,15 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, addProduct, removeProduct, loading, error }}
+      value={{
+        products,
+        addProduct,
+        setCartItem,
+        cartItem,
+        removeProduct,
+        loading,
+        error,
+      }}
     >
       {children}
     </ProductContext.Provider>
