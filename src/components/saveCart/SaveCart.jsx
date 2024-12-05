@@ -20,6 +20,7 @@ const SaveCart = () => {
       role="presentation"
       onClick={closeDrawer}
       onKeyDown={closeDrawer}
+      inert={isDrawerOpen ? null : "true"}
     ></Box>
   );
 
